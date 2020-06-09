@@ -38,7 +38,7 @@ public class App {
                     } catch (InvocationTargetException e) {
                         if (e.getCause() instanceof AssertionError) {
                             failedTests++;
-                            failedMethodsNames.add(clazz + "." + method.getName());
+                            failedMethodsNames.add(clazz.getSimpleName() + "." + method.getName());
                         }
                         else
                             throw e;
@@ -51,7 +51,7 @@ public class App {
         }
 
         if (!failedMethodsNames.isEmpty()) {
-            System.out.println("Failed tests:");
+            System.out.println("\nFailed tests:");
             for (String s: failedMethodsNames)
                 System.out.println(s);
         }
