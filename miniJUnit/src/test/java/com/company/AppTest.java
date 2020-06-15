@@ -5,16 +5,17 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class AppTest 
 {
     @Test
-    public void testMiniJUnit() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    public void testMiniJUnit() throws IllegalAccessException, InstantiationException, InvocationTargetException, MalformedURLException {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        App.main(null);
+        MiniJUnitStarter.main(null);
         assertEquals("\u001B[0;32mSuccessful: 1\u001B[0;31m Failed: 2\n" +
                 "\u001B[0;32mSuccessful: 2\u001B[0;31m Failed: 1\n" +
                 "\n" +
