@@ -1,20 +1,26 @@
 package com.company;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+
+import static junit.framework.TestCase.assertEquals;
+
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void testMiniJUnit() throws IllegalAccessException, InstantiationException, InvocationTargetException {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        App.main(null);
+        assertEquals("\u001B[0;32mSuccessful: 1\u001B[0;31m Failed: 2\n" +
+                "\u001B[0;32mSuccessful: 2\u001B[0;31m Failed: 1\n" +
+                "\n" +
+                "Failed tests:\n" +
+                "UnitTests2.unitTest2\n" +
+                "UnitTests2.unitTest3\n" +
+                "UnitTests.unitTest2\n", outContent.toString());
     }
 }
